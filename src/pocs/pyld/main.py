@@ -1,6 +1,8 @@
 from pyld import jsonld
+import json
 from datetime import datetime
 
+CONST_BASE_URL = 'https://trng-b2share.eudat.eu/api/'
 
 class Field:
     """basic model field representation
@@ -70,9 +72,35 @@ class Model:
 
         :returns: list of cls instances.
         """
-        url = 'https://trng-b2share.eudat.eu/api/%s/' % cls.resource_name
+        url = CONST_BASE_URL + '%s/' % cls.resource_name
         doc = jsonld.get_document_loader()(url)
 
         for hit in doc['document']['hits']['hits']:
             # TODO: check if it is a valid path for all resources.
             yield cls.from_dict(hit)
+
+    @classmethod
+    def get_from_file(cls, _filename):
+
+        with open(_filename) as json_data:
+            d = json.load(json_data)
+            #print('JSON file loaded')
+            #print(d)
+            #yield cls.from_dict(d)
+            return cls.from_dict(d)
+
+    @classmethod
+    def get_id(cls, _objectId):
+        url = CONST_BASE_URL + cls.resource_name + '/' + _objectId
+        #print(url)
+        doc = jsonld.get_document_loader()(url)
+        #print(doc['document'])
+        return cls.from_dict(doc['document'])
+
+    @classmethod
+    def get(cls, _urlComplement):
+        url = CONST_BASE_URL + _urlComplement
+        print(url)
+        doc = jsonld.get_document_loader()(url)
+        print(doc['document'])
+        return cls.from_dict(doc['document'])
