@@ -60,7 +60,7 @@ class Model:
         for name, field in cls.get_fields():
             value = _dict.get(field.name)
 
-            if value:
+            if value is not None:
                 setattr(instance, name, field.parse(value))
 
         return instance
@@ -72,7 +72,7 @@ class Model:
 
         :returns: list of cls instances.
         """
-        url = CONST_BASE_URL + '%s/' % cls.resource_name
+        url = '{url}{resource}'.format(url=CONST_BASE_URL, resource=cls.resource_name)
         doc = jsonld.get_document_loader()(url)
 
         for hit in doc['document']['hits']['hits']:
@@ -81,26 +81,18 @@ class Model:
 
     @classmethod
     def get_from_file(cls, _filename):
-
         with open(_filename) as json_data:
             d = json.load(json_data)
-            #print('JSON file loaded')
-            #print(d)
-            #yield cls.from_dict(d)
             return cls.from_dict(d)
 
     @classmethod
-    def get_id(cls, _objectId):
-        url = CONST_BASE_URL + cls.resource_name + '/' + _objectId
-        #print(url)
+    def get_id(cls, object_id):
+        url = '{url}{resource}/{id}'.format(url=CONST_BASE_URL, resource=cls.resource_name,id=object_id)
         doc = jsonld.get_document_loader()(url)
-        #print(doc['document'])
         return cls.from_dict(doc['document'])
 
     @classmethod
     def get(cls, _urlComplement):
         url = CONST_BASE_URL + _urlComplement
-        print(url)
         doc = jsonld.get_document_loader()(url)
-        print(doc['document'])
         return cls.from_dict(doc['document'])
