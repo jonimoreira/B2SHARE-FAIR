@@ -171,10 +171,6 @@ class ModelTestCase(unittest.TestCase):
 
         for community in models:
             catalog = translate_catalog(community)
-
-            if community.restricted_submission != catalog["b2:restricted_submission"]:
-                import pdb; pdb.set_trace()
-
             assert_fields_community_catalog(self, community, catalog)
 
     # Test L2 translation: List all communities: /api/communities
