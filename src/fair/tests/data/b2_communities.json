@@ -1,0 +1,360 @@
+{
+  "hits": {
+    "hits": [
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Aalto University", 
+        "id": "c4234f93-da96-4d2f-a2c8-fa83d0775212", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/c4234f93-da96-4d2f-a2c8-fa83d0775212"
+        }, 
+        "logo": "/img/communities/aalto.jpg", 
+        "name": "Aalto", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": true, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"Aalto\"", 
+            "id": 1, 
+            "name": "com:c4234f93da964d2fa2c8fa83d0775212:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"Aalto\"", 
+            "id": 2, 
+            "name": "com:c4234f93da964d2fa2c8fa83d0775212:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Biomedical Research.", 
+        "id": "99916f6f-9a2c-4feb-a342-6552ac7f1529", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/99916f6f-9a2c-4feb-a342-6552ac7f1529"
+        }, 
+        "logo": "/img/communities/bbmri.png", 
+        "name": "BBMRI", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"BBMRI\"", 
+            "id": 3, 
+            "name": "com:99916f6f9a2c4feba3426552ac7f1529:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"BBMRI\"", 
+            "id": 4, 
+            "name": "com:99916f6f9a2c4feba3426552ac7f1529:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Linguistic data", 
+        "id": "0afede87-2bf2-4d89-867e-d2ee57251c62", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/0afede87-2bf2-4d89-867e-d2ee57251c62"
+        }, 
+        "logo": "/img/communities/clarin.png", 
+        "name": "CLARIN", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"CLARIN\"", 
+            "id": 5, 
+            "name": "com:0afede872bf24d89867ed2ee57251c62:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"CLARIN\"", 
+            "id": 6, 
+            "name": "com:0afede872bf24d89867ed2ee57251c62:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Meteorology and climate data.", 
+        "id": "94a9567e-2fba-4677-8fde-a8b68bdb63e8", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/94a9567e-2fba-4677-8fde-a8b68bdb63e8"
+        }, 
+        "logo": "/img/communities/drihm.png", 
+        "name": "DRIHM", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"DRIHM\"", 
+            "id": 7, 
+            "name": "com:94a9567e2fba46778fdea8b68bdb63e8:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"DRIHM\"", 
+            "id": 8, 
+            "name": "com:94a9567e2fba46778fdea8b68bdb63e8:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Incoherent scatter radar data", 
+        "id": "b344f92a-cd0e-4e4c-aa09-28b5f95f7e41", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/b344f92a-cd0e-4e4c-aa09-28b5f95f7e41"
+        }, 
+        "logo": "/img/communities/eiscat.png", 
+        "name": "EISCAT", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": true, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"EISCAT\"", 
+            "id": 9, 
+            "name": "com:b344f92acd0e4e4caa0928b5f95f7e41:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"EISCAT\"", 
+            "id": 10, 
+            "name": "com:b344f92acd0e4e4caa0928b5f95f7e41:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "The big Eudat community. Use this community if no other is suited for you", 
+        "id": "e9b9792e-79fb-4b07-b6b4-b9c2bd06d095", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/e9b9792e-79fb-4b07-b6b4-b9c2bd06d095"
+        }, 
+        "logo": "/img/communities/eudat.png", 
+        "name": "EUDAT", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"EUDAT\"", 
+            "id": 11, 
+            "name": "com:e9b9792e79fb4b07b6b4b9c2bd06d095:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"EUDAT\"", 
+            "id": 12, 
+            "name": "com:e9b9792e79fb4b07b6b4b9c2bd06d095:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Ontological data.", 
+        "id": "893fad89-dc4a-4f1b-a9ba-4240aa18e12b", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/893fad89-dc4a-4f1b-a9ba-4240aa18e12b"
+        }, 
+        "logo": "/img/communities/euon.png", 
+        "name": "EUON", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"EUON\"", 
+            "id": 13, 
+            "name": "com:893fad89dc4a4f1ba9ba4240aa18e12b:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"EUON\"", 
+            "id": 14, 
+            "name": "com:893fad89dc4a4f1ba9ba4240aa18e12b:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Biodiversity data.", 
+        "id": "867c4e67-9227-4b6f-8595-c97d37e9de61", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/867c4e67-9227-4b6f-8595-c97d37e9de61"
+        }, 
+        "logo": "/img/communities/gbif.png", 
+        "name": "GBIF", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"GBIF\"", 
+            "id": 15, 
+            "name": "com:867c4e6792274b6f8595c97d37e9de61:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"GBIF\"", 
+            "id": 16, 
+            "name": "com:867c4e6792274b6f8595c97d37e9de61:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Long-Term Ecosystem Research in Europe", 
+        "id": "d952913c-451e-4b5c-817e-d578dc8a4469", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/d952913c-451e-4b5c-817e-d578dc8a4469"
+        }, 
+        "logo": "/img/communities/lter.jpg", 
+        "name": "LTER", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"LTER\"", 
+            "id": 17, 
+            "name": "com:d952913c451e4b5c817ed578dc8a4469:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"LTER\"", 
+            "id": 18, 
+            "name": "com:d952913c451e4b5c817ed578dc8a4469:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Herbarium data.", 
+        "id": "4ba7c0fd-1435-4313-9c13-4d888d60321a", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/4ba7c0fd-1435-4313-9c13-4d888d60321a"
+        }, 
+        "logo": "/img/communities/nrm.png", 
+        "name": "NRM", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"NRM\"", 
+            "id": 19, 
+            "name": "com:4ba7c0fd143543139c134d888d60321a:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"NRM\"", 
+            "id": 20, 
+            "name": "com:4ba7c0fd143543139c134d888d60321a:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Wed, 21 Dec 2016 08:57:40 GMT", 
+        "description": "Research Data Alliance", 
+        "id": "8d963a29-5e19-492b-8cfe-97da4f54fad2", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/8d963a29-5e19-492b-8cfe-97da4f54fad2"
+        }, 
+        "logo": "/img/communities/rda.png", 
+        "name": "RDA", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": true, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"RDA\"", 
+            "id": 21, 
+            "name": "com:8d963a295e19492b8cfe97da4f54fad2:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"RDA\"", 
+            "id": 22, 
+            "name": "com:8d963a295e19492b8cfe97da4f54fad2:member"
+          }
+        }, 
+        "updated": "Wed, 21 Dec 2016 08:57:40 GMT"
+      }, 
+      {
+        "created": "Tue, 09 May 2017 13:45:39 GMT", 
+        "description": "European Plate Observing System", 
+        "id": "0c97d6d2-88da-473a-8d30-2f4e730ed4a2", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/0c97d6d2-88da-473a-8d30-2f4e730ed4a2"
+        }, 
+        "logo": "/img/communities/epos.png", 
+        "name": "EPOS", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"EPOS\"", 
+            "id": 23, 
+            "name": "com:0c97d6d288da473a8d302f4e730ed4a2:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"EPOS\"", 
+            "id": 24, 
+            "name": "com:0c97d6d288da473a8d302f4e730ed4a2:member"
+          }
+        }, 
+        "updated": "Tue, 09 May 2017 13:45:39 GMT"
+      }, 
+      {
+        "created": "Tue, 31 Oct 2017 10:45:06 GMT", 
+        "description": "Test community for publication_workflow", 
+        "id": "3b04f6f0-f52c-42c6-ba02-db7a8d68aea6", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/3b04f6f0-f52c-42c6-ba02-db7a8d68aea6"
+        }, 
+        "logo": "/img/communities/workflow.png", 
+        "name": "workflow", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"workflow\"", 
+            "id": 25, 
+            "name": "com:3b04f6f0f52c42c6ba02db7a8d68aea6:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"workflow\"", 
+            "id": 26, 
+            "name": "com:3b04f6f0f52c42c6ba02db7a8d68aea6:member"
+          }
+        }, 
+        "updated": "Tue, 31 Oct 2017 10:45:06 GMT"
+      }, 
+      {
+        "created": "Wed, 10 Jan 2018 14:02:31 GMT", 
+        "description": "Urban air quality data", 
+        "id": "2854dbc2-59d7-4d6b-bdbd-a7bee231c7f0", 
+        "links": {
+          "self": "https://trng-b2share.eudat.eu/api/communities/2854dbc2-59d7-4d6b-bdbd-a7bee231c7f0"
+        }, 
+        "logo": "/img/communities/liferespira.png", 
+        "name": "LIFE+RESPIRA", 
+        "publication_workflow": "direct_publish", 
+        "restricted_submission": false, 
+        "roles": {
+          "admin": {
+            "description": "Admin role of the community \"LIFE+RESPIRA\"", 
+            "id": 27, 
+            "name": "com:2854dbc259d74d6bbdbda7bee231c7f0:admin"
+          }, 
+          "member": {
+            "description": "Member role of the community \"LIFE+RESPIRA\"", 
+            "id": 28, 
+            "name": "com:2854dbc259d74d6bbdbda7bee231c7f0:member"
+          }
+        }, 
+        "updated": "Wed, 10 Jan 2018 14:02:31 GMT"
+      }
+    ], 
+    "total": 14
+  }, 
+  "links": {
+    "self": "https://trng-b2share.eudat.eu/api/communities/"
+  }
+}
