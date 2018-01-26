@@ -1,11 +1,6 @@
 from mapper import Model, Field, NestedField
 
 
-class NestedModel(Model):
-    name = Field(name='name')
-    description = Field(name='description')
-
-
 class LinksModel(Model):
     selflink = Field(name='self')
 
