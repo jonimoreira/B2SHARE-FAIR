@@ -1,0 +1,32 @@
+{
+  "max_file_size": 10737418240, 
+  "id": "b270a0e6-6096-422d-9eb7-942c1aa80c5d", 
+  "created": "2018-01-19T17:46:44.297740+00:00", 
+  "locked": true, 
+  "size": 19, 
+  "links": {
+    "uploads": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d?uploads", 
+    "self": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d", 
+    "versions": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d?versions"
+  }, 
+  "quota_size": 21474836480, 
+  "contents": [
+    {
+      "key": "testFile.txt", 
+      "version_id": "a2b097cb-0d2b-4910-b46a-45f18a6e2f58", 
+      "is_head": true, 
+      "created": "2018-01-19T17:46:44.312142+00:00", 
+      "mimetype": "text/plain", 
+      "updated": "2018-01-19T17:46:44.320108+00:00", 
+      "checksum": "md5:0b26e313ed4a7ca6904b0e9369e5b957", 
+      "delete_marker": false, 
+      "links": {
+        "version": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d/testFile.txt?versionId=a2b097cb-0d2b-4910-b46a-45f18a6e2f58", 
+        "uploads": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d/testFile.txt?uploads", 
+        "self": "https://trng-b2share.eudat.eu/api/files/b270a0e6-6096-422d-9eb7-942c1aa80c5d/testFile.txt"
+      }, 
+      "size": 19
+    }
+  ], 
+  "updated": "2018-01-19T17:46:44.327858+00:00"
+}
