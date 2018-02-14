@@ -4,7 +4,7 @@ import json
 from pyld import jsonld
 
 from fair.models import CommunityModel, RecordModel, WebAppModel
-from fair.tests.helpers import assert_fields_community_catalog, translate_catalog, translate_fdp, translate_dataset
+from fair.translators import assert_fields_community_catalog, translate_catalog, translate_fdp, translate_dataset
 
 
 def get_data_file_path(data_file):
