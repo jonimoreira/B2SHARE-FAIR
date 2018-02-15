@@ -7,6 +7,11 @@ class LinksModel(Model):
     def __repr__(self):
         return '{"self": "%s"}' % self.selflink
 
+class Role(Model):
+    name = Field(name='name')
+    description = Field(name='description')
+    identifier = Field(name='id')
+
 
 class CommunityModel(Model):
     """
@@ -22,6 +27,7 @@ class CommunityModel(Model):
     publication_workflow = Field(name='publication_workflow')
     restricted_submission = Field(name='restricted_submission')
     links = NestedField(name='links', cls=LinksModel)
+    roles = NestedField(name='roles', cls=Role, multiple=True)
 
     resource_name = 'communities'
 
@@ -62,18 +68,29 @@ class WebAppModel(Model):
     """
     B2Share webapp model schema abstraction.
     """
-    CONST_B2SHARE_REPOSITORY_ID = "EUDAT_B2SHARE_WEBAPP"
+    CONST_B2SHARE_REPOSITORY_ID = "https://trng-b2share.eudat.eu/"
+    CONST_B2SHARE_FDP_REPOSITORY_ID = "https://trng-b2share.eudat.eu/fdp-repositoryID"
     CONST_B2SHARE_REPOSITORY_NAME = "EUDAT B2SHARE data repository"
     CONST_B2SHARE_REPOSITORY_DESCRIPTION = "The EUDAT B2SHARE data repository as a web application"
-    CONST_B2SHARE_REPOSITORY_CREATED = "01/01/2018"
-    CONST_B2SHARE_REPOSITORY_UPDATED = "01/01/2018"
+    CONST_B2SHARE_REPOSITORY_CREATED = "01/01/2016"
+    CONST_B2SHARE_REPOSITORY_UPDATED = "23/02/2018"
+    CONST_B2SHARE_REPOSITORY_INSTITUTION = "SURFsara"
+    CONST_B2SHARE_REPOSITORY_INSTITUTION_COUNTRY = "The Netherlands"
+
+    CONST_FDP_METADATA_ID = "https://trng-b2share.eudat.eu/fdp-metadataID"
+
 
     identifier = CONST_B2SHARE_REPOSITORY_ID  # Field(name='id')
     name = CONST_B2SHARE_REPOSITORY_NAME  # Field(name='name')
     description = CONST_B2SHARE_REPOSITORY_DESCRIPTION  # Field(name='description')
     created = CONST_B2SHARE_REPOSITORY_CREATED  # Field(name='created')
     updated = CONST_B2SHARE_REPOSITORY_UPDATED  # Field(name='updated')
-    publisher = ''
+    publisher = CONST_B2SHARE_REPOSITORY_INSTITUTION
+    fdp_repository_id = CONST_B2SHARE_FDP_REPOSITORY_ID
+    institution = CONST_B2SHARE_REPOSITORY_INSTITUTION
+    institution_country = CONST_B2SHARE_REPOSITORY_INSTITUTION_COUNTRY
+
+    fdp_metadata_id = CONST_FDP_METADATA_ID
 
     site_function = Field(name='site_function')
     training_site_link = Field(name='training_site_link')

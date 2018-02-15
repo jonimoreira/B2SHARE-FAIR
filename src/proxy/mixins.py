@@ -12,3 +12,11 @@ class ReadResourceMixin:
     def on_get(self, req, resp, _id=None):
         resp.media = self._get_by_id(_id) if _id else self._get_all()
 
+class ReadResource:
+    @classmethod
+    def _get(cls):
+        b2entity = cls.model.get('')
+        return cls.translator(b2entity)
+
+    def on_get(self, req, resp, _id=None):
+        resp.media = self._get()
