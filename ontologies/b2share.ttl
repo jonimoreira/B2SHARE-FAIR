@@ -1,0 +1,109 @@
+# baseURI: https://b2share.eudat.eu/ontology/b2share
+# imports: http://purl.org/dc/terms/
+# imports: http://purl.org/spar/pro/
+
+@prefix : <https://b2share.eudat.eu/ontology/b2share> .
+@prefix b2: <https://b2share.eudat.eu/ontology/b2share#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pro: <http://purl.org/spar/pro/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://b2share.eudat.eu/ontology/b2share>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports pro: ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+b2:AdminEUDAT
+  rdf:type b2:AdminRole ;
+  dc:description "Admin role of the community \\\"EUDAT\\\"" ;
+  dc:title "com:e9b9792e79fb4b07b6b4b9c2bd06d095:admin" ;
+  rdfs:comment "Admin role definition in community level (B2SHARE): <#Community.Name#>" ;
+  rdfs:label "admin EUDAT" ;
+.
+b2:AdminRole
+  rdf:type owl:Class ;
+  rdfs:comment "Admin role definition for community level (B2SHARE)" ;
+  rdfs:label "B2SHARE Admin role" ;
+  rdfs:subClassOf pro:PublishingRole ;
+.
+b2:Community
+  rdf:type owl:Class ;
+  rdfs:comment "A scientific community has the roles of creating and maintaining metadata schemas and curating the datasets which are part of a scientific domain or research project. B2SHARE users can be part of one or more communities. Some selected members of a community are also given the role of community administrators, which grants them the special rights needed for the schema definitions and record curation tasks. https://b2share.eudat.eu/help/api" ;
+  rdfs:label "Community" ;
+  rdfs:subClassOf owl:Thing ;
+.
+b2:MemberEUDAT
+  rdf:type b2:AdminRole ;
+  dc:description "Admin role of the community \\\"EUDAT\\\"" ;
+  dc:title "com:e9b9792e79fb4b07b6b4b9c2bd06d095:member" ;
+  rdfs:comment "Admin role definition in community level (B2SHARE): <#Community.Name#>" ;
+  rdfs:label "admin EUDAT" ;
+.
+b2:MemberRole
+  rdf:type owl:Class ;
+  rdfs:comment "Member role definition for community level (B2SHARE)" ;
+  rdfs:label "B2SHARE Member role" ;
+  rdfs:subClassOf pro:PublishingRole ;
+.
+b2:PublicationWorkflow
+  rdf:type owl:Class ;
+  rdfs:comment "The status of the publication: direct_publish" ;
+  rdfs:label "Publication workflow status" ;
+  rdfs:subClassOf owl:Thing ;
+.
+b2:PublicationWorkflow_direct_publish
+  rdf:type b2:PublicationWorkflow ;
+  rdfs:comment "" ;
+  rdfs:label "direct_publish" ;
+.
+b2:WebApp
+  rdf:type owl:Class ;
+  rdfs:comment "Data repository implemented as a we application consuming b2share REST API" ;
+  rdfs:label "Web application (repository)" ;
+  rdfs:subClassOf owl:Thing ;
+.
+b2:hasB2accessRegistrationLink
+  rdf:type rdf:Property ;
+  rdfs:comment "<documentation?>" ;
+  rdfs:label "b2access_registration_link" ;
+.
+b2:hasB2noteUrl
+  rdf:type rdf:Property ;
+  rdfs:comment "<documentation?>" ;
+  rdfs:label "b2note_url" ;
+.
+b2:hasPublicationWorkflow
+  rdf:type rdf:Property ;
+  rdfs:comment """A publication workflow
+The HTTP API does not impose a specific workflow for creating a record. The following example workflow only defines the most basic steps:
+
+Identify a target community for your data by using the HTTP API List all communities function
+Using the community's identifier, retrieve the JSON Schema of the record's metadata. The submitted metadata will have to conform to this schema. Use the Get community schema function
+Create a draft record: use the Create draft record function
+Upload the files into the draft record. You will have to use one HTTP request per file. Use the Upload file function
+Set the complete metadata and publish the record. Use the Submit draft for publication function https://b2share.eudat.eu/help/api""" ;
+  rdfs:domain b2:PublicationWorkflow ;
+  rdfs:label "publication_workflow" ;
+  b2:hasPublicationWorkflow "b2:PublicationWorkflow" ;
+.
+b2:hasSiteFunction
+  rdf:type rdf:Property ;
+  rdfs:comment """<documentation?>
+Check if exists in an existing ontology (e.g. production, training, test environments): maybe on some software engineering ontology""" ;
+  rdfs:label "site_function" ;
+.
+b2:hasTermsOfUseLink
+  rdf:type rdf:Property ;
+  rdfs:comment """<documentation?>
+Check if exists in an existing ontology """ ;
+  rdfs:label "terms_of_use_link" ;
+.
+b2:hasTrainingSiteLink
+  rdf:type rdf:Property ;
+  rdfs:comment "<documentation?>" ;
+  rdfs:label "training_site_link" ;
+.
