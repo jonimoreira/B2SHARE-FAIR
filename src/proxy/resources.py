@@ -1,5 +1,5 @@
-from fair.models import CommunityModel, WebAppModel
-from fair.translators import translate_catalog, translate_fdp
+from fair.models import WebAppModel, CommunityModel, RecordModel, FileModel
+from fair.translators import translate_fdp, translate_catalog, translate_dataset, translate_distribution
 
 from proxy.mixins import ReadResourceMixin, ReadResource
 
@@ -11,3 +11,13 @@ class WebAppResource(ReadResource):
 class CommnunityResource(ReadResourceMixin):
     model = CommunityModel
     translator = translate_catalog
+
+
+class RecordResource(ReadResourceMixin):
+    model = RecordModel
+    translator = translate_dataset
+
+
+class FileResource(ReadResourceMixin):
+    model = FileModel
+    translator = translate_distribution

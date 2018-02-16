@@ -7,61 +7,11 @@ class LinksModel(Model):
     def __repr__(self):
         return '{"self": "%s"}' % self.selflink
 
+
 class Role(Model):
     name = Field(name='name')
     description = Field(name='description')
     identifier = Field(name='id')
-
-
-class CommunityModel(Model):
-    """
-    B2Share community model schema abstraction.
-    """
-
-    identifier = Field(name='id')
-    name = Field(name='name')
-    description = Field(name='description')
-    created = Field(name='created')
-    updated = Field(name='updated')
-    logo = Field(name='logo')
-    publication_workflow = Field(name='publication_workflow')
-    restricted_submission = Field(name='restricted_submission')
-    links = NestedField(name='links', cls=LinksModel)
-    roles = NestedField(name='roles', cls=Role, multiple=True)
-
-    resource_name = 'communities'
-
-
-class RecordModel(Model):
-    """
-    B2Share record model schema abstraction.
-    """
-
-    identifier = Field(name='id')
-    name = Field(name='name')
-    description = Field(name='description')
-    created = Field(name='created')
-    updated = Field(name='updated')
-
-    links = NestedField(name='links', cls=LinksModel)
-
-    resource_name = 'records'
-
-
-class FileModel(Model):
-    """
-    B2Share file model schema abstraction.
-    """
-
-    identifier = Field(name='id')
-    name = Field(name='name')
-    description = Field(name='description')
-    created = Field(name='created')
-    updated = Field(name='updated')
-
-    links = NestedField(name='links', cls=LinksModel)
-
-    resource_name = 'files'
 
 
 class WebAppModel(Model):
@@ -100,3 +50,66 @@ class WebAppModel(Model):
     terms_of_use_link = Field(name='terms_of_use_link')
 
     resource_name = ''
+
+
+class CommunityModel(Model):
+    """
+    B2Share community model schema abstraction.
+    """
+
+    identifier = Field(name='id')
+    name = Field(name='name')
+    description = Field(name='description')
+    created = Field(name='created')
+    updated = Field(name='updated')
+    logo = Field(name='logo')
+    publication_workflow = Field(name='publication_workflow')
+    restricted_submission = Field(name='restricted_submission')
+    links = NestedField(name='links', cls=LinksModel)
+    roles = NestedField(name='roles', cls=Role, multiple=True)
+
+    resource_name = 'communities'
+
+
+class RecordModel(Model):
+    """
+    B2Share record model schema abstraction.
+    """
+
+    identifier = Field(name='id')
+    name = Field(name='name')
+    description = Field(name='description')
+    created = Field(name='created')
+    updated = Field(name='updated')
+
+    links = NestedField(name='links', cls=LinksModel)
+
+    resource_name = 'records'
+
+
+class ContentsModel(Model):
+    version_id = Field(name='version_id')
+
+    def __repr__(self):
+        return '{"self": "%s"}' % self.selflink
+
+
+class FileModel(Model):
+    """
+    B2Share file model schema abstraction.
+    """
+
+    identifier = Field(name='id')
+    locked = Field(name='locked')
+    size = Field(name='size')
+    max_file_size = Field(name='max_file_size')
+    quota_size = Field(name='quota_size')
+
+    created = Field(name='created')
+    updated = Field(name='updated')
+
+    links = NestedField(name='links', cls=LinksModel)
+
+    contents = NestedField(name='contents', cls=ContentsModel)
+
+    resource_name = 'files'

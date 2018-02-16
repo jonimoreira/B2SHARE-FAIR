@@ -7,7 +7,7 @@ def translate_fdp(webapp):
     context = {
         # ontologies used in FDP according to spec
         "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+        "rdfs" : "http://www.w3.org/2000/01/rdf-schema/",
         "dcat" : "http://www.w3.org/ns/dcat#",
         "xsd" : "http://www.w3.org/2001/XMLSchema#",
         "owl" : "http://www.w3.org/2002/07/owl#",
@@ -59,15 +59,6 @@ def translate_fdp(webapp):
 # B2SHARE: Community
 # Level 2: Catalog metadata layer
 def translate_catalog(community):
-    # Map Roles:
-    #   in: community.Roles[namerole]{description, id, name}
-    #   out: catalog.Roles[] (array)
-    #                   Role
-    #                       @id = name
-    #                       @type = "pro:PublishingRole"
-    #                       description
-    #                       title = name
-    #                       identifier = id
 
     # TODO: change from community.roles[1].name to community.roles["admin"].name and check if it is really a controlled vocabulary in B2SHAER (Thijs)
 
@@ -159,6 +150,39 @@ def translate_dataset(record):
         "http://purl.org/dc/terms/issued": record.created,
         "http://purl.org/dc/terms/modified": record.updated,
         "@id": record.links.selflink
+    }
+
+    return jsonld.compact(doc, context)
+
+
+# B2SHARE: File (contents)
+# Level 4: Distribution layer
+def translate_distribution(b2file):
+    # The idea is to map each file version in b2file.contents to a fdp.Distribution
+    # Therefore, this translator will always return an array of fdp.distributoin with at least 1 element
+    # Fields of b2file are mapped to each distribution, e.g. distrib1.b2:quota_size, distrib2.b2:quota_size, distrib3.b2:quota_size
+    # Each fdp.distribution b2:hasPriorVersion to the prior. The first in the array does not instantiate this property
+
+    context = {
+        # ontologies used in FDP according to spec
+        "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+        "dcat" : "http://www.w3.org/ns/dcat#",
+        "xsd" : "http://www.w3.org/2001/XMLSchema#",
+        "owl" : "http://www.w3.org/2002/07/owl#",
+        "dct" : "http://purl.org/dc/terms/",
+        "lang" : "http://id.loc.gov/vocabulary/iso639-1/",
+        "fdp" : "http://rdf.biosemantics.org/ontologies/fdp-o#",
+        "foaf" : "http://xmlns.com/foaf/",
+        "b2" : "https://b2share.eudat.eu/ontology/b2share/"
+    }
+
+    doc = {
+        "@id": b2file.links.selflink,
+        "@type": "dcat:Distribution",
+        "http://purl.org/dc/terms/identifier": b2file.identifier,
+        "http://purl.org/dc/terms/issued": b2file.created,
+        "http://purl.org/dc/terms/modified": b2file.updated
     }
 
     return jsonld.compact(doc, context)
