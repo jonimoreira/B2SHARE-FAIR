@@ -62,9 +62,7 @@ class Model:
 
         for name, field in cls.get_fields():
             value = _dict.get(field.name)
-
-            if value is not None:
-                setattr(instance, name, field.parse(value))
+            setattr(instance, name, field.parse(value))
 
         return instance
 
