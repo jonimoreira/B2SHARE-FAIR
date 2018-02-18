@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 
 from pyld import jsonld
+import falcon
 
 
 CONST_BASE_URL = 'https://trng-b2share.eudat.eu/api/'
@@ -60,25 +61,14 @@ class Model:
 
         instance = cls()
 
+        if not _dict:
+            _dict = {}
+
         for name, field in cls.get_fields():
             value = _dict.get(field.name)
             setattr(instance, name, field.parse(value))
 
         return instance
-
-
-    @classmethod
-    def get_all(cls):
-        """gets all model intances from remote endpoint.
-
-        :returns: list of cls instances.
-        """
-        url = '{url}{resource}'.format(url=CONST_BASE_URL, resource=cls.resource_name)
-        doc = jsonld.get_document_loader()(url)
-
-        for hit in doc['document']['hits']['hits']:
-            # TODO: check if it is a valid path for all resources.
-            yield cls.from_dict(hit)
 
     @classmethod
     def get_from_file(cls, _filename):
@@ -86,10 +76,35 @@ class Model:
             d = json.load(json_data)
             return cls.from_dict(d)
 
+    @staticmethod
+    def load_document(uri):
+        doc = jsonld.get_document_loader()(uri)
+
+        if doc['document'].get('status', 200) != 200:
+            raise falcon.HTTPBadRequest(
+                'Proxy Error',
+                'An error has ocurred while requesting this resource.'
+            )
+
+        return doc
+
+    @classmethod
+    def get_all(cls, query=''):
+        """gets all model intances from remote endpoint.
+
+        :returns: list of cls instances.
+        """
+        uri = '{url}{resource}?{query}'.format(url=CONST_BASE_URL,
+                                               resource=cls.resource_name, query=query,)
+        doc = cls.load_document(uri)
+
+        for hit in doc['document']['hits']['hits']:
+            yield cls.from_dict(hit)
+
     @classmethod
     def get_id(cls, object_id):
-        url = '{url}{resource}/{id}'.format(url=CONST_BASE_URL, resource=cls.resource_name, id=object_id)
-        doc = jsonld.get_document_loader()(url)
+        uri = '{url}{resource}/{id}'.format(url=CONST_BASE_URL, resource=cls.resource_name, id=object_id)
+        doc = cls.load_document(uri)
         return cls.from_dict(doc['document'])
 
     @classmethod
