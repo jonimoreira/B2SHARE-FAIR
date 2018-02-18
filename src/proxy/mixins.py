@@ -5,12 +5,16 @@ class ReadResourceMixin:
         return cls.translator(community)
 
     @classmethod
-    def _get_all(cls):
-        communities = cls.model.get_all()
+    def _get_all(cls, query):
+        communities = cls.model.get_all(query)
         return [cls.translator(c) for c in communities]
 
     def on_get(self, req, resp, _id=None):
-        resp.media = self._get_by_id(_id) if _id else self._get_all()
+        if _id:
+            resp.media = self._get_by_id(_id)
+        else:
+            resp.media = self._get_all(req.query_string)
+
 
 class ReadResource:
     @classmethod
