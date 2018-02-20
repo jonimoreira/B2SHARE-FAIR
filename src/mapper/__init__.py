@@ -40,7 +40,7 @@ class NestedField(Field):
 
         # check if we are dealing with an array or a dicticonary
         # based collection.
-        flatarray = not hasattr(value, 'values')
+        flatarray = not isinstance(value, dict)
         items = value if flatarray else value.values()
         return [self.cls.from_dict(item) for item in items]
 
