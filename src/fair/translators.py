@@ -1,4 +1,5 @@
 from pyld import jsonld
+#import rdflib
 
 
 # B2SHARE: webapp
@@ -55,6 +56,20 @@ def translate_fdp(webapp):
 
     return jsonld.compact(doc, context)
 
+
+def translate_fdp_rdfxml(webapp):
+    jsonldmsg = translate_fdp(webapp)
+    normalized = jsonld.normalize(jsonldmsg)
+    #TODO: check error on transforming from N3 to RDF/XML (or Turtle?)
+    # http://www.nolan-nichols.com/knowledge-graph-via-sparql.html
+    #g = rdflib.Graph()
+    #g.parse(data=normalized, format='n3')
+    #result = g.serialize(format='turtle')
+
+    result = normalized
+    #print(result)
+
+    return result
 
 # B2SHARE: Community
 # Level 2: Catalog metadata layer
@@ -132,7 +147,7 @@ def translate_dataset(record):
         # ontologies used in FDP according to spec
         "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-        "dcat" : "http://www.w3.org/ns/dcat#",
+        "dcat" : "http://www.w3.org/ns/dcat/",
         "xsd" : "http://www.w3.org/2001/XMLSchema#",
         "owl" : "http://www.w3.org/2002/07/owl#",
         "dct" : "http://purl.org/dc/terms/",
@@ -143,16 +158,35 @@ def translate_dataset(record):
     }
 
     doc = {
+        "@id": record.links.selflink,
         "@type": "dcat:Dataset",
-        "http://purl.org/dc/terms/identifier": record.identifier,
+        "http://purl.org/dc/terms/identifier": "dataRecord", #record.identifier,
         "http://purl.org/dc/terms/title": record.name,
-        "http://purl.org/dc/terms/description": record.description,
         "http://purl.org/dc/terms/issued": record.created,
         "http://purl.org/dc/terms/modified": record.updated,
-        "@id": record.links.selflink
+
+        "https://b2share.eudat.eu/ontology/b2share/hasCommunity": record.metadata.community,
+        "http://purl.org/dc/terms/language": record.metadata.language,
+        "http://purl.org/dc/terms/hasVersion": record.metadata.version,
+        "http://purl.org/dc/terms/publisher": record.metadata.publisher
+
+        # dcat:theme array maps to keywords (record metadata set in the community level)
+        #"http://www.w3.org/ns/dcat/theme":
+        #TODO: metadata.keywords -> dcat:theme
+        #TODO: multiple descriptoins from metadata: "http://purl.org/dc/terms/description": record.description,
+
+
     }
 
-    return jsonld.compact(doc, context)
+    if len(record.metadata.descriptions) > 0:
+        print(record.metadata.descriptions[0])
+    #print(record.metadata.descriptions)
+
+    result = jsonld.compact(doc, context)
+    #normalized = jsonld.normalize(result)
+    #print(normalized)
+
+    return result
 
 
 # B2SHARE: File (contents)
@@ -178,7 +212,7 @@ def translate_distribution(b2file):
     }
 
     doc = {
-        "@id": b2file.links.selflink,
+        #"@id": b2file.links.selflink,
         "@type": "dcat:Distribution",
         "http://purl.org/dc/terms/identifier": b2file.identifier,
         "http://purl.org/dc/terms/issued": b2file.created,

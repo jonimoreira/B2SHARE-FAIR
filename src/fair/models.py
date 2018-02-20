@@ -71,6 +71,17 @@ class CommunityModel(Model):
     resource_name = 'communities'
 
 
+class RecordMetadataModel(Model):
+    community = Field(name='community')
+    contact_email = Field(name='contact_email')
+    language = Field(name='language')
+    version = Field(name='version')
+    publisher = Field(name='publisher')
+
+    descriptions = Field(name='descriptions')
+    keywords = Field(name='keywords')
+
+
 class RecordModel(Model):
     """
     B2Share record model schema abstraction.
@@ -83,6 +94,8 @@ class RecordModel(Model):
     updated = Field(name='updated')
 
     links = NestedField(name='links', cls=LinksModel)
+
+    metadata = NestedField(name='metadata', cls=RecordMetadataModel)
 
     resource_name = 'records'
 
@@ -108,8 +121,8 @@ class FileModel(Model):
     created = Field(name='created')
     updated = Field(name='updated')
 
-    links = NestedField(name='links', cls=LinksModel)
+    #links = NestedField(name='links', cls=LinksModel)
 
-    contents = NestedField(name='contents', cls=ContentsModel)
+    #contents = NestedField(name='contents', cls=ContentsModel)
 
     resource_name = 'files'

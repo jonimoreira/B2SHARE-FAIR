@@ -11,6 +11,7 @@ class ReadResourceMixin:
 
     def on_get(self, req, resp, _id=None):
         if _id:
+            print(_id)
             resp.media = self._get_by_id(_id)
         else:
             resp.media = self._get_all(req.query_string)
