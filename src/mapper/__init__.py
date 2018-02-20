@@ -38,7 +38,11 @@ class NestedField(Field):
         if not self.multiple:
             return self.cls.from_dict(value)
 
-        return [self.cls.from_dict(item) for item in value.values()]
+        # check if we are dealing with an array or a dicticonary
+        # based collection.
+        flatarray = not hasattr(value, 'values')
+        items = value if flatarray else value.values()
+        return [self.cls.from_dict(item) for item in items]
 
 
 class Model:
