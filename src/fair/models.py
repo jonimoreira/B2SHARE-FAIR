@@ -3,6 +3,8 @@ from mapper import Model, Field, NestedField
 
 class LinksModel(Model):
     selflink = Field(name='self')
+    files = Field(name='files')
+    version = Field(name='version')
 
     def __repr__(self):
         return '{"self": "%s"}' % self.selflink
@@ -71,6 +73,11 @@ class CommunityModel(Model):
     resource_name = 'communities'
 
 
+class Description(Model):
+    description = Field(name='description')
+    description_type = Field(name='description_type')
+
+
 class RecordMetadataModel(Model):
     community = Field(name='community')
     contact_email = Field(name='contact_email')
@@ -78,8 +85,16 @@ class RecordMetadataModel(Model):
     version = Field(name='version')
     publisher = Field(name='publisher')
 
-    descriptions = Field(name='descriptions')
-    keywords = Field(name='keywords')
+    descriptions = NestedField(name='descriptions', cls=Description, multiple=True)
+    keywords = Field(name='keywords') #OBS: it should be an array (NestedField multiple) but there is no key/value in b2.record metadata keywords
+
+
+class RecordFile(Model):
+    bucket = Field(name='bucket')
+    checksum = Field(name='checksum')
+    key = Field(name='key')
+    ePIC_PID = Field(name='ePIC_PID')
+    version_id = Field(name='version_id')
 
 
 class RecordModel(Model):
@@ -97,14 +112,17 @@ class RecordModel(Model):
 
     metadata = NestedField(name='metadata', cls=RecordMetadataModel)
 
+    files = NestedField(name='files', cls=RecordFile, multiple=True)
+
     resource_name = 'records'
 
 
-class ContentsModel(Model):
+class ContentModel(Model):
+    created = Field(name='created')
+    updated = Field(name='updated')
     version_id = Field(name='version_id')
 
-    def __repr__(self):
-        return '{"self": "%s"}' % self.selflink
+    links = NestedField(name='links', cls=LinksModel)
 
 
 class FileModel(Model):
@@ -121,8 +139,8 @@ class FileModel(Model):
     created = Field(name='created')
     updated = Field(name='updated')
 
-    #links = NestedField(name='links', cls=LinksModel)
+    links = NestedField(name='links', cls=LinksModel)
 
-    #contents = NestedField(name='contents', cls=ContentsModel)
+    contents = NestedField(name='contents', cls=ContentModel, multiple=True)
 
     resource_name = 'files'

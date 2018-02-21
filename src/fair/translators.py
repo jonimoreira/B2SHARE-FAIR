@@ -143,6 +143,34 @@ def assert_fields_community_catalog(community, catalog):
 # B2SHARE: Record
 # Level 3: Dataset metadata layer
 def translate_dataset(record):
+
+    dc_descriptions = []
+    for description in record.metadata.descriptions:
+        #print(description.description)
+        dc_description = {
+            "http://purl.org/dc/terms/description": description.description
+        }
+        dc_descriptions.append(dc_description)
+        #merged_dict = {key: value for (key, value) in (dc_descriptions.items() + dc_description.items())}
+
+    #jsonDescription = json.dumps(dc_descriptions)
+    #print(dc_descriptions)
+
+    dcat_themes = []
+    if record.metadata.keywords is not None:
+        for keyword in record.metadata.keywords:
+            dcat_theme = {
+                "http://www.w3.org/ns/dcat/theme": keyword
+            }
+            dcat_themes.append(dcat_theme)
+
+    dcat_distributions = []
+    for recordfile in record.files:
+        dcat_distribution = {
+            "http://www.w3.org/ns/dcat/distribution": recordfile.version_id #TODO: the most correct here is to use the file @id (which is based on the version_id) -> this would require to access the /files/ resource to retrieve the desired @id (to discuss)
+        }
+        dcat_distributions.append(dcat_distribution)
+
     context = {
         # ontologies used in FDP according to spec
         "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -168,18 +196,18 @@ def translate_dataset(record):
         "https://b2share.eudat.eu/ontology/b2share/hasCommunity": record.metadata.community,
         "http://purl.org/dc/terms/language": record.metadata.language,
         "http://purl.org/dc/terms/hasVersion": record.metadata.version,
-        "http://purl.org/dc/terms/publisher": record.metadata.publisher
+        "http://purl.org/dc/terms/publisher": record.metadata.publisher,
 
-        # dcat:theme array maps to keywords (record metadata set in the community level)
-        #"http://www.w3.org/ns/dcat/theme":
-        #TODO: metadata.keywords -> dcat:theme
-        #TODO: multiple descriptoins from metadata: "http://purl.org/dc/terms/description": record.description,
-
+        #TODO: check if it is the best way to serialize an array in JSON-LD (through a property defined in the internal ontology)
+        "https://b2share.eudat.eu/ontology/b2share/hasDescriptions": dc_descriptions,
+        "https://b2share.eudat.eu/ontology/b2share/hasThemes": dcat_themes,
+        "https://b2share.eudat.eu/ontology/b2share/hasDistributions": dcat_distributions,
+        "https://b2share.eudat.eu/ontology/b2share/hasDistributionsLink": record.links.files  # Check if the correct approach is to format the link to opint to /distributions/_id
 
     }
 
-    if len(record.metadata.descriptions) > 0:
-        print(record.metadata.descriptions[0])
+    #if len(record.metadata.descriptions) > 0:
+    #    print(record.metadata.descriptions[0])
     #print(record.metadata.descriptions)
 
     result = jsonld.compact(doc, context)
@@ -197,6 +225,16 @@ def translate_distribution(b2file):
     # Fields of b2file are mapped to each distribution, e.g. distrib1.b2:quota_size, distrib2.b2:quota_size, distrib3.b2:quota_size
     # Each fdp.distribution b2:hasPriorVersion to the prior. The first in the array does not instantiate this property
 
+    dcat_distributions = []
+    for filecontent in b2file.contents:
+        dcat_distribution = translate_distribution_item(b2file, filecontent)
+        dcat_distributions.append(dcat_distribution)
+
+    return dcat_distributions
+
+# translates a file version to a distribution: check if this is the best approach. Cons: it is necessary to represent the distribution and the distribution version (how FDP approaches it?)
+def translate_distribution_item(b2file, filecontent):
+
     context = {
         # ontologies used in FDP according to spec
         "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -212,11 +250,13 @@ def translate_distribution(b2file):
     }
 
     doc = {
-        #"@id": b2file.links.selflink,
+        "@id": filecontent.links.selflink,
         "@type": "dcat:Distribution",
-        "http://purl.org/dc/terms/identifier": b2file.identifier,
-        "http://purl.org/dc/terms/issued": b2file.created,
-        "http://purl.org/dc/terms/modified": b2file.updated
+        #"http://purl.org/dc/terms/identifier": b2file.identifier,
+        "http://purl.org/dc/terms/issued": filecontent.created,
+        "http://purl.org/dc/terms/modified": filecontent.updated,
+
+        "http://purl.org/dc/terms/versionOf": b2file.links.selflink
     }
 
     return jsonld.compact(doc, context)

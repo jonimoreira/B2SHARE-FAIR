@@ -42,6 +42,9 @@ class NestedField(Field):
         # based collection.
         flatarray = not isinstance(value, dict)
         items = value if flatarray else value.values()
+        #print(items)
+        if items is None:
+            return []
         return [self.cls.from_dict(item) for item in items]
 
 
