@@ -78,6 +78,11 @@ class Description(Model):
     description_type = Field(name='description_type')
 
 
+class License(Model):
+    license = Field(name='license')
+    license_uri = Field(name='license_uri')
+
+
 class RecordMetadataModel(Model):
     community = Field(name='community')
     contact_email = Field(name='contact_email')
@@ -86,7 +91,8 @@ class RecordMetadataModel(Model):
     publisher = Field(name='publisher')
 
     descriptions = NestedField(name='descriptions', cls=Description, multiple=True)
-    keywords = Field(name='keywords') #OBS: it should be an array (NestedField multiple) but there is no key/value in b2.record metadata keywords
+    keywords = Field(name='keywords') #OBS: it should be an array (NestedField multiple) but there is no key/value in b2.record metadata keywords.
+    license = NestedField(name='license', cls=License)
 
 
 class RecordFile(Model):
@@ -121,6 +127,7 @@ class ContentModel(Model):
     created = Field(name='created')
     updated = Field(name='updated')
     version_id = Field(name='version_id')
+    key = Field(name='key')
 
     links = NestedField(name='links', cls=LinksModel)
 

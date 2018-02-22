@@ -156,6 +156,7 @@ def translate_dataset(record):
     #jsonDescription = json.dumps(dc_descriptions)
     #print(dc_descriptions)
 
+    #Should these mappings consider other metadata fields, such as "disciplines" and resource types?
     dcat_themes = []
     if record.metadata.keywords is not None:
         for keyword in record.metadata.keywords:
@@ -170,6 +171,10 @@ def translate_dataset(record):
             "http://www.w3.org/ns/dcat/distribution": recordfile.version_id #TODO: the most correct here is to use the file @id (which is based on the version_id) -> this would require to access the /files/ resource to retrieve the desired @id (to discuss)
         }
         dcat_distributions.append(dcat_distribution)
+
+    dc_license = "no license metadata used"
+    if record.metadata.license is not None:
+        dc_license = record.metadata.license.license
 
     context = {
         # ontologies used in FDP according to spec
@@ -197,6 +202,8 @@ def translate_dataset(record):
         "http://purl.org/dc/terms/language": record.metadata.language,
         "http://purl.org/dc/terms/hasVersion": record.metadata.version,
         "http://purl.org/dc/terms/publisher": record.metadata.publisher,
+
+        "http://purl.org/dc/terms/license": dc_license, #"testing...", # license,
 
         #TODO: check if it is the best way to serialize an array in JSON-LD (through a property defined in the internal ontology)
         "https://b2share.eudat.eu/ontology/b2share/hasDescriptions": dc_descriptions,
@@ -255,6 +262,9 @@ def translate_distribution_item(b2file, filecontent):
         #"http://purl.org/dc/terms/identifier": b2file.identifier,
         "http://purl.org/dc/terms/issued": filecontent.created,
         "http://purl.org/dc/terms/modified": filecontent.updated,
+        "http://purl.org/dc/terms/title": filecontent.key,
+        #"http://purl.org/dc/terms/license": filecontent.key,  --> license is set up in the dataset level (level 3)
+        "http://purl.org/dc/terms/hasVersion": filecontent.version_id,
 
         "http://purl.org/dc/terms/versionOf": b2file.links.selflink
     }
