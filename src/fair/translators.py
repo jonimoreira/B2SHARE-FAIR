@@ -71,6 +71,25 @@ def translate_fdp_rdfxml(webapp):
 
     return result
 
+
+# Test mappings Level 1: FDP repository x B2SAHRE webapp, according to translate_fdp method
+def assert_fields_webapp_fdp(webapp, fdp):
+    #print(fdp["@type"])
+    assert fdp["@type"] == "r3d:Repository"
+    assert webapp.identifier ==  fdp["dct:identifier"]
+    assert webapp.description ==  fdp["dct:description"]
+    assert webapp.name ==  fdp["dct:title"]
+    assert webapp.version ==  fdp["dct:hasVersion"]
+    assert webapp.publisher ==  fdp["dct:publisher"]
+    #assert webapp.created ==  fdp["dct:issued"]
+    #assert webapp.updated ==  fdp["dct:modified"]
+    assert webapp.site_function ==  fdp["b2:site_function"]
+    assert webapp.training_site_link ==  fdp["b2:training_site_link"]
+    assert webapp.b2access_registration_link ==  fdp["b2:b2access_registration_link"]
+    assert webapp.b2note_url ==  fdp["b2:b2note_url"]
+    assert webapp.terms_of_use_link ==  fdp["b2:terms_of_use_link"]
+
+
 # B2SHARE: Community
 # Level 2: Catalog metadata layer
 def translate_catalog(community):

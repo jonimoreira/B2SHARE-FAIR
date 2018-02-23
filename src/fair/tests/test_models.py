@@ -4,7 +4,7 @@ import json
 from pyld import jsonld
 
 from fair.models import CommunityModel, RecordModel, WebAppModel
-from fair.translators import assert_fields_community_catalog, translate_catalog, translate_fdp, translate_dataset
+from fair.translators import assert_fields_community_catalog, translate_catalog, translate_fdp, translate_dataset, assert_fields_webapp_fdp
 
 
 def get_data_file_path(data_file):
@@ -28,6 +28,7 @@ def test_load_community_model():
 def test_translate_webapp():
     webapp = WebAppModel.get('')
     fdp_repository = translate_fdp(webapp)
+    assert_fields_webapp_fdp(webapp, fdp_repository)
 
 # Test L2 translation: List all communities: /api/communities
 def test_translate_communities():
@@ -58,4 +59,3 @@ def test_translate_community_json_file():
     catalog = translate_catalog(community)
 
     assert_fields_community_catalog(community, catalog)
-
